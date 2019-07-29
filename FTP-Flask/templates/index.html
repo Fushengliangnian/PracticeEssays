@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for dir in listdir %}
+
+        {% if dir.endswith("/") %}
+            <li><a href="/?path={{ dir }}">{{ dir }}</a></li>
+        {% else %}
+            <li>{{ dir }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+</body>
+</html>

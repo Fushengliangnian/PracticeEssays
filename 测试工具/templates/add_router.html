@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 70px">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form method="post">
+                <div class="form-group">
+                    <label for="router-name">路由名称</label>
+                    <input type="text" class="form-control" id="router-name" placeholder="路由名称" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="router-url">路由地址</label>
+                    <input type="text" class="form-control" id="router-url" placeholder="/v3/users/login/?" name="url">
+                </div>
+                <div class="form-group">
+                    <label for="router-data">路由参数</label>
+                    <input type="text" class="form-control" id="router-data" placeholder="{user:1, name:'fusheng'}" name="data">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

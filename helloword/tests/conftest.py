@@ -1,0 +1,1 @@
+from sea.test.fixtures import *  # noqa
