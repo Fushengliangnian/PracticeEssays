@@ -5,7 +5,7 @@ from motor import motor_tornado
 from bson import ObjectId
 import bson
 
-client = motor_tornado.MotorClient('123.206.19.158', 30001)
+client = motor_tornado.MotorClient('192.168.1.120', 30001)
 db = client.piano
 
 
