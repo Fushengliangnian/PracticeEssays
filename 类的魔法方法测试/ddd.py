@@ -4,3 +4,7 @@
 # @Author  : lidong@immusician.com
 # @Site    :
 # @File    : ddd.py
+
+dice = {}
+dice.items()
+
