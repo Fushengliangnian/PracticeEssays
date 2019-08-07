@@ -50,7 +50,7 @@ class BaseRequest:
             if not func.startswith("_"):
                 if func not in ["get", 'post', 'run']:
                     url, ret = getattr(self, func)()
-                    self._show_data(func, url, ret)
+                    # self._show_data(func, url, ret)
 
     @staticmethod
     def _show_data(func_name, url, response):
