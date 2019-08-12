@@ -32,7 +32,8 @@
     "event_need_params": {
       "uid": {"description": "用户id", "value_type": "int", "required": true},
       "create_time": {"description": "创建时间", "value_type": "int", "required": true},
-      "lesson_id": {"description": "课程id", "value_type": "int", "required": true}
+      "item_type": {"description": "类型", "value_type": "int", "required": true, "default": "lesson"},
+      "item_id": {"description": "课程id", "value_type": "int", "required": true}
     }
   },
   {

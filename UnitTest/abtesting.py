@@ -61,7 +61,7 @@ class ABTestingTest(BaseRequest):
         data = {
             "has_ratio": True,
             "name": "完课率",
-            "course_id": 14,
+            "course_id": 120,
             "ratio_indicator_list": ujson.dumps([
                 {
                     "dividend_id": 2,
@@ -71,21 +71,45 @@ class ABTestingTest(BaseRequest):
             ]),
             "indicator_select_args_dict": ujson.dumps({
                 "1": {
-                    "course_id": 14,
+                    "course_id": 120,
                     "indicator_id": "5d41473b191e75ebb226bd22",
                     "completed": False,
                     "user_group": 5
                 },
                 "2": {
-                    "course_id": 14,
+                    "course_id": 120,
                     "indicator_id": "5d41473b191e75ebb226bd22",
                     "completed": True,
                     "user_group": 5
                 }
-            })
+            }),
+
+            "course_name": "好玩的非洲鼓"
+        }
+        data2 = {
+            "ratio_indicator_list": ujson.dumps([
+                {
+                    "dividend_id": 1,
+                    "indicator_id": "5d41473b191e75ebb226bd23",
+                    "divisor_id": 2
+                }
+            ]),
+            "indicator_select_args_dict": ujson.dumps({
+                "1": {
+                    "course_id": 19,
+                    "indicator_id": "5d414da8191e75edaf07adbc",
+                    "user_group": 9
+                },
+                "2": {
+                    "indicator_id": "5d414da8191e75edaf07adbd"
+                }
+            }),
+            "name": "购课率",
+            "course_id": 120,
+            "has_ratio": True
         }
         url = "/v1/create_project"
-        ret = self.post(url, json=data)
+        ret = self.post(url, json=data2)
         self._show_data("create_project", url, ret)
 
     def get_all_indicator(self):
@@ -93,10 +117,16 @@ class ABTestingTest(BaseRequest):
         ret = self.get(url)
         self._show_data("get_all_indicator", url, ret)
 
+    def get_project_data(self):
+        url = "/v1/get_project_data"
+        ret = self.post(url, json={"project_id": "5d414f5b191e75ee50919d7b"})
+        self._show_data("get_project_data", url, ret)
+
 
 if __name__ == '__main__':
     # ABTestingTest().run()
-    ABTestingTest().get_all_indicator()
+    # ABTestingTest().get_all_indicator()
     # ABTestingTest().get_course()
     # ABTestingTest().create_course()
-    # ABTestingTest().create_project()
+    ABTestingTest().create_project()
+    # ABTestingTest().get_project_data()
