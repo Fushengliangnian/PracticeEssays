@@ -11,8 +11,9 @@ from UnitTest.base import BaseRequest
 
 class AIABTesting(BaseRequest):
     def __init__(self):
-        super().__init__(host="http://api.iguitar.immusician.com", port=2525)
-        # super().__init__(port=22222)
+        # TODO: 记得修改
+        # super().__init__(host="http://api.iguitar.immusician.com", port=2525)
+        super().__init__(port=22222)
 
     def upload_event_data(self):
         data = {
@@ -55,19 +56,20 @@ class AIABTesting(BaseRequest):
 
     def create_event(self):
         data = {
-            "event_name": "点击banner1",
+            "event_name": "点击 vip特权 按钮",
             "event_type": 1,
             "event_need_params": {
                 "item_id": {
-                    "required": True,
+                    "required": False,
                     "value_type": "str",
-                    "description": "该类型的id"
+                    "description": "该类型的id",
+                    "default": ""
                 },
                 "item_type": {
                     "required": True,
                     "value_type": "int",
-                    "description": "类型(轮播图)",
-                    "default": 1
+                    "description": "类型(按钮)",
+                    "default": 4
                 },
                 "event_id": {
                     "required": True,
@@ -95,9 +97,23 @@ class AIABTesting(BaseRequest):
         ret = self.post(url, json=data)
         self._show_data("create_event", url, ret)
 
+    def upload_event_data_single(self):
+        data = {
+            "event_id": "5d494b8e191e7529d62b4add",
+            "uid": 1,
+            "create_time": 10,
+            "item_id": "",
+            "item_type": 1,
+            # "duration": None
+        }
+        url = "/v3/abtesting/upload_event_data/"
+        ret = self.get(url, json=data)
+        self._show_data("upload_event_data_single", url, ret)
+
 
 if __name__ == '__main__':
     # AIABTesting().run()
-    # AIABTesting().create_event()
+    AIABTesting().create_event()
     # AIABTesting().get_all_event()
-    AIABTesting().upload_event_data()
+    # AIABTesting().upload_event_data()
+    AIABTesting().upload_event_data_single()
