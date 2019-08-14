@@ -26,3 +26,7 @@ def fun(a: B):
 # fun(A())
 fun(A)
 
+ret = bool(1)
+ret = bool(0)
+print(ret)
+
