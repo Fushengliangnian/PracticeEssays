@@ -2,6 +2,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Example3_10",
+            "request": "launch",
+            "mainClass": "Example3_10"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Example1_1",
+            "request": "launch",
+            "mainClass": "Example1_1"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Puppy",
             "request": "launch",
             "mainClass": "Puppy"

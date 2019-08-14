@@ -59,7 +59,7 @@ class ABTestingTest(BaseRequest):
 
     def create_project(self):
         data = {
-            "has_ratio": True,
+            "has_ratio": 0,
             "name": "完课率",
             "course_id": 120,
             "ratio_indicator_list": ujson.dumps([
@@ -79,7 +79,7 @@ class ABTestingTest(BaseRequest):
                 "2": {
                     "course_id": 120,
                     "indicator_id": "5d41473b191e75ebb226bd22",
-                    "completed": True,
+                    "completed": 1,
                     "user_group": 5
                 }
             }),
@@ -106,10 +106,10 @@ class ABTestingTest(BaseRequest):
             }),
             "name": "购课率",
             "course_id": 120,
-            "has_ratio": True
+            "has_ratio": 0
         }
         url = "/v1/create_project"
-        ret = self.post(url, json=data2)
+        ret = self.post(url, json=data)
         self._show_data("create_project", url, ret)
 
     def get_all_indicator(self):

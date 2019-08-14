@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <style class="darkreader darkreader--fallback" media="screen"></style>
+        <style class="darkreader darkreader--text" media="screen"></style>
+        <style class="darkreader darkreader--invert" media="screen"></style>
+        <style class="darkreader darkreader--inline" media="screen">
+            [data-darkreader-inline-bgcolor] {
+              background-color: var(--darkreader-inline-bgcolor) !important;
+            }
+            [data-darkreader-inline-bgimage] {
+              background-image: var(--darkreader-inline-bgimage) !important;
+            }
+            [data-darkreader-inline-border] {
+              border-color: var(--darkreader-inline-border) !important;
+            }
+            [data-darkreader-inline-border-bottom] {
+              border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+            }
+            [data-darkreader-inline-border-left] {
+              border-left-color: var(--darkreader-inline-border-left) !important;
+            }
+            [data-darkreader-inline-border-right] {
+              border-right-color: var(--darkreader-inline-border-right) !important;
+            }
+            [data-darkreader-inline-border-top] {
+              border-top-color: var(--darkreader-inline-border-top) !important;
+            }
+            [data-darkreader-inline-boxshadow] {
+              box-shadow: var(--darkreader-inline-boxshadow) !important;
+            }
+            [data-darkreader-inline-color] {
+              color: var(--darkreader-inline-color) !important;
+            }
+            [data-darkreader-inline-fill] {
+              fill: var(--darkreader-inline-fill) !important;
+            }
+            [data-darkreader-inline-stroke] {
+              stroke: var(--darkreader-inline-stroke) !important;
+            }
+            [data-darkreader-inline-outline] {
+              outline-color: var(--darkreader-inline-outline) !important;
+            }</style>
+        <style class="darkreader darkreader--user-agent" media="screen">
+            html {
+                background-color: #baaf9b !important;
+            }
+            html, body, input, textarea, select, button {
+                background-color: #baaf9b;
+            }
+            html, body, input, textarea, select, button {
+                border-color: #363430;
+                color: #000000;
+            }
+            a {
+                color: #192e72;
+            }
+            table {
+                border-color: #5d584d;
+            }
+            ::placeholder {
+                color: #7d7566;
+            }
+            ::selection {
+                background-color: #1d3e64;
+                color: #baaf9b;
+            }
+            ::-moz-selection {
+                background-color: #1d3e64;
+                color: #baaf9b;
+            }
+            input:-webkit-autofill,
+            textarea:-webkit-autofill,
+            select:-webkit-autofill {
+                background-color: #a39986 !important;
+                color: #000000 !important;
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>日期选择</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style class="darkreader darkreader--sync" media="screen"></style>
+        <link rel="stylesheet" type="text/css" href="jquery/font-awesome.4.6.0.css">
+        <style class="darkreader darkreader--sync" media="screen"></style>
+        <link rel="stylesheet" href="css/daterangepicker.css">
+        <style class="darkreader darkreader--sync" media="screen"></style>
+        <style class="darkreader darkreader--override" media="screen">
+            .jfk-bubble {
+                background-color: #ccc1ae !important;
+            }
+            .vimvixen-hint {
+                background-color: #bba266 !important;
+                border-color: #8a7326 !important;
+                color: #221c0b !important;
+            }
+        </style>
+    </head>
+
+    <body style="">
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                    <span>
+                        <i class="fa fa-calendar"></i> 日期选择
+                    </span>
+                        <i class="fa fa-caret-down"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="jquery/jquery-1.10.2.js"></script>
+    <script src="jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <script>
+        $('#daterange-btn').daterangepicker({
+                ranges: {
+                    '今天': [moment(), moment()],
+                    '本周': [moment().startOf('week'), moment().endOf('week')],
+                    '本月': [moment().startOf('month'), moment().endOf('month')],
+                    '今年': [moment().startOf('year'), moment().endOf('year')]
+                },
+                startDate: moment(),
+                endDate: moment().endOf('month')
+            },
+            function(start, end) {
+                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                alert(start.format('YYYYMMDD') + " " + end.format('YYYYMMDD'));
+            }
+        );
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+    </script>
+    <div class="daterangepicker dropdown-menu opensleft">
+        <div class="calendar left">
+            <div class="daterangepicker_input">
+                <input class="input-mini" type="text" name="daterangepicker_start" value="">
+                    <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+                        <div class="calendar-time" style="display: none;">
+                            <div></div>
+                            <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+                        </div>
+            </div>
+            <div class="calendar-table"></div>
+        </div>
+
+        <div class="calendar right">
+            <div class="daterangepicker_input">
+                <input class="input-mini" type="text" name="daterangepicker_end" value="">
+                <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+                <div class="calendar-time" style="display: none;">
+                    <div></div>
+                    <i class="fa fa-clock-o glyphicon glyphicon-time"></i>
+                </div>
+            </div>
+            <div class="calendar-table">
+
+            </div>
+        </div>
+
+        <div class="ranges">
+            <ul>
+                <li>今天</li>
+                <li>本周</li>
+                <li>本月</li>
+                <li>今年</li>
+                <li>自定义</li>
+            </ul>
+            <div class="range_inputs">
+                <button class="applyBtn btn btn-sm btn-success" disabled="disabled" type="button">选取</button>
+                <button class="cancelBtn btn btn-sm btn-default" type="button">取消</button>
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+</html>
