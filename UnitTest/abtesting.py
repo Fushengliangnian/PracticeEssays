@@ -108,8 +108,22 @@ class ABTestingTest(BaseRequest):
             "course_id": 120,
             "has_ratio": 0
         }
+        data3 = {
+            u'course_id': 44,
+            u'ratio_indicator_list': [],
+            u'has_ratio': False,
+            u'name': 'test',
+            u'indicator_select_args_list': [
+                {
+                    u'course_id': u'44',
+                    u'indicator_id': u'5d41473b191e75ebb226bd22',
+                    u'completed': u'1',
+                 u'user_group': u''
+                }
+            ]
+        }
         url = "/v1/create_project"
-        ret = self.post(url, json=data)
+        ret = self.post(url, json=data3)
         self._show_data("create_project", url, ret)
 
     def get_all_indicator(self):

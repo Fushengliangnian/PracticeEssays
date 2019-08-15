@@ -6,7 +6,7 @@ import time
 
 old = time.time()
 
-mongo = pymongo.MongoClient(host="123.206.19.158", port=30001)
+mongo = pymongo.MongoClient(port=30001)
 db = mongo.piano
 table = db.v1_score_manage
 # table = db.v1_score
