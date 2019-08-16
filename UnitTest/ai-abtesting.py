@@ -110,10 +110,37 @@ class AIABTesting(BaseRequest):
         ret = self.get(url, json=data)
         self._show_data("upload_event_data_single", url, ret)
 
+    def get_project_data(self):
+        url = "/v1/get_project_data"
+        data = {
+            "project_id": "5d553aa9c938cda633d5a20b"
+        }
+        ret = self.get(url, param=data)
+        self._show_data("get_project_data", url, ret)
+
+    def get_course(self):
+        url = "/v1/get_course"
+        ret = self.get(url)
+        self._show_data("get_course", url, ret)
+
+    def create_course(self):
+        url = "/v1/create_course"
+        ret = self.post(url, json={"course_id": 14, "course_name": "未命名"})
+        self._show_data("create_course", url, ret)
+
+    def get_all_indicator(self):
+        url = "/v1/get_all_indicator"
+        ret = self.get(url)
+        self._show_data("get_all_indicator", url, ret)
+
 
 if __name__ == '__main__':
     # AIABTesting().run()
-    AIABTesting().create_event()
+    # AIABTesting().create_event()
     # AIABTesting().get_all_event()
     # AIABTesting().upload_event_data()
-    AIABTesting().upload_event_data_single()
+    # AIABTesting().upload_event_data_single()
+    # AIABTesting().get_project_data()
+    AIABTesting().get_course()
+    # AIABTesting().create_course()
+    AIABTesting().get_all_indicator()

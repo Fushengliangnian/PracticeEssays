@@ -1,0 +1,31 @@
+[
+  {
+    "has_ratio" : false,
+    "name" : "banner点击总数",
+    "course_id" : 19,
+    "ratio_indicator_list" : [
+
+    ],
+    "indicator_select_args_list" : [
+        {
+            "item_id" : "5d4d374cea56aa7a4a57b25f",
+            "indicator_id" : "5d55362cc938cda633d5a209"
+        }
+    ]
+  },
+  {
+    "has_ratio" : false,
+    "name" : "banner点击总人次",
+    "course_id" : 19,
+    "ratio_indicator_list" : [
+
+    ],
+    "indicator_select_args_list" : [
+        {
+            "item_id" : "5d4d374cea56aa7a4a57b25f",
+            "indicator_id" : "5d55362cc938cda633d5a209",
+            "user_group": 0
+        }
+    ]
+  }
+]

@@ -55,9 +55,11 @@ class BaseRequest:
     @staticmethod
     def _show_data(func_name, url, response):
         print("*"*10, func_name, "*"*10)
+        print("")
         print("url: ", url)
         print("status: ", response.status_code)
         print("json: ", response.json())
+        print("")
         print("")
 
 

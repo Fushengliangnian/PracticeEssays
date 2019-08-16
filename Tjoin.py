@@ -302,6 +302,9 @@ data = {
     "itunes_receipt": json.dumps(ret)
 }
 
-ret = requests.post("http://127.0.0.1:8001/v9/subscription/iap/check", headers=headers, json=data)
-print(ret.content)
-print(ret.json())
+# ret = requests.post("http://127.0.0.1:8001/v9/subscription/iap/check", headers=headers, json=data)
+# print(ret.content)
+# print(ret.json())
+
+lis = list()
+print(lis[0])
