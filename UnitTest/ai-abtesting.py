@@ -6,6 +6,7 @@
 # @File    : ai-abtesting.py
 
 import ujson
+import time
 from UnitTest.base import BaseRequest
 
 
@@ -99,11 +100,19 @@ class AIABTesting(BaseRequest):
 
     def upload_event_data_single(self):
         data = {
-            "event_id": "5d494b8e191e7529d62b4add",
-            "uid": 1,
-            "create_time": 10,
-            "item_id": "",
-            "item_type": 1,
+            "event_id": "5d5a1a0dc938cda633d5a20f",
+            # "uid": 0,
+            "create_time": int(time.time()),
+            "item_id": "https://www.baidu.com",
+            "item_type": 6,
+            # "duration": None
+        }
+        data2 = {
+            "event_id": "5d5a1a0dc938cda633d5a210",
+            # "uid": 0,
+            "create_time": int(time.time()),
+            "item_id": "小星星",
+            "item_type": 4,
             # "duration": None
         }
         url = "/v3/abtesting/upload_event_data/"
@@ -133,6 +142,44 @@ class AIABTesting(BaseRequest):
         ret = self.get(url)
         self._show_data("get_all_indicator", url, ret)
 
+    def get_item_list(self):
+        url = "/v1/get_item_list"
+        data = {"item_type": 5}
+        ret = self.get(url, param=data)
+        self._show_data("get_item_list", url, ret)
+
+    def create_indicator(self):
+        url = "/v3/create_indicator"
+        data = {
+            "name": "事件 -- 统计点击总数",
+            "db_name": "jita",
+            "collection_name": "v3_event_info",
+            "select_args": {
+                "item_id": {
+                    "description": "banner id",
+                    "required": True,
+                    "value_type": "str",
+                    "is_show_list": True,
+                    "item_type": 5
+                },
+                "event_id": {
+                    "description": "event id",
+                    "required": True,
+                    "value_type": "str",
+                    "is_show_list": True
+                }
+            },
+            "is_ratio": False,
+            "need_way": {
+                "compute_total": [
+                    "create_time"
+                ]
+            },
+            "show_data": {}
+        }
+        ret = self.post(url, json=data)
+        self._show_data("create_indicator", url, ret)
+
 
 if __name__ == '__main__':
     # AIABTesting().run()
@@ -141,6 +188,8 @@ if __name__ == '__main__':
     # AIABTesting().upload_event_data()
     # AIABTesting().upload_event_data_single()
     # AIABTesting().get_project_data()
-    AIABTesting().get_course()
+    # AIABTesting().get_course()
     # AIABTesting().create_course()
-    AIABTesting().get_all_indicator()
+    # AIABTesting().get_all_indicator()
+    # AIABTesting().get_item_list()
+    AIABTesting().create_indicator()

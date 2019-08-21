@@ -16,8 +16,20 @@ def func(a: int, b: str):
 
 # func("1", 2)
 
-while 1:
-    a = bool(input())
-    if a is True:
-        print("...")
-    print("not a\n")
+# while 1:
+#     a = bool(input())
+#     if a is True:
+#         print("...")
+#     print("not a\n")
+
+class B:
+    b = "b"
+
+    @classmethod
+    def func(cls):
+        print(cls.b)
+
+
+b = B()
+b.func()
+B.func()

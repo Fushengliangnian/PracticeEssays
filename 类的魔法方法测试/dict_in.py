@@ -13,7 +13,7 @@ dic = {
     "e": 1,
 }
 
-print("ec" in dic)
+# print("ec" in dic)
 
 
 class A:
@@ -23,5 +23,8 @@ class A:
 
 
 s = A()
-print("a" in s)
+print(id(s))
+print(hash(s))
+print(hash(s) * 16)
+# print("a" in s)
 

@@ -1,0 +1,150 @@
+[
+  {
+    "event_name" : "从绘本进入活动页面",
+    "event_type" : 1,
+    "event_need_params" : {
+        "duration" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "时长"
+        },
+        "create_time" : {
+            "required" : true,
+            "value_type" : "int",
+            "description" : "创建时间"
+        },
+        "uid" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "用户id"
+        },
+        "item_type" : {
+            "default" : 6,
+            "required" : true,
+            "value_type" : "int",
+            "description" : "活动"
+        },
+        "event_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前事件id"
+        },
+        "item_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前活动的url"
+        }
+    }
+  },
+  {
+    "event_name" : "从绘本进入并点击活动页面中歌曲的播放按钮",
+    "event_type" : 1,
+    "event_need_params" : {
+        "duration" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "时长"
+        },
+        "create_time" : {
+            "required" : true,
+            "value_type" : "int",
+            "description" : "创建时间"
+        },
+        "uid" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "用户id"
+        },
+        "item_type" : {
+            "default" : 4,
+            "required" : true,
+            "value_type" : "int",
+            "description" : "播放按钮"
+        },
+        "event_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前事件id"
+        },
+        "item_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "歌曲名字"
+        }
+    }
+  },
+  {
+    "event_name" : "非绘本进入活动页面",
+    "event_type" : 1,
+    "event_need_params" : {
+        "duration" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "时长"
+        },
+        "create_time" : {
+            "required" : true,
+            "value_type" : "int",
+            "description" : "创建时间"
+        },
+        "uid" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "用户id"
+        },
+        "item_type" : {
+            "default" : 6,
+            "required" : true,
+            "value_type" : "int",
+            "description" : "活动"
+        },
+        "event_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前事件id"
+        },
+        "item_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前活动的url"
+        }
+    }
+  },
+  {
+    "event_name" : "非绘本进入点击活动页面中歌曲的播放按钮",
+    "event_type" : 1,
+    "event_need_params" : {
+        "duration" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "时长"
+        },
+        "create_time" : {
+            "required" : true,
+            "value_type" : "int",
+            "description" : "创建时间"
+        },
+        "uid" : {
+            "required" : false,
+            "value_type" : "int",
+            "description" : "用户id"
+        },
+        "item_type" : {
+            "default" : 4,
+            "required" : true,
+            "value_type" : "int",
+            "description" : "播放按钮"
+        },
+        "event_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "当前事件id"
+        },
+        "item_id" : {
+            "required" : true,
+            "value_type" : "str",
+            "description" : "歌曲名字"
+        }
+    }
+  }
+]

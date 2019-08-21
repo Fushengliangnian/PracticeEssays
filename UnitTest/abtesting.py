@@ -4,7 +4,7 @@
 # @Author  : lidong@immusician.com
 # @Site    :
 # @File    : abtesting.py
-import ujson
+import ujson, time
 from UnitTest.base import BaseRequest
 
 
@@ -52,10 +52,20 @@ class ABTestingTest(BaseRequest):
         ret = self.get(url)
         self._show_data("get_course", url, ret)
 
+    def get_activity(self):
+        url = "/v1/get_activity"
+        ret = self.get(url)
+        self._show_data("get_activity", url, ret)
+
     def create_course(self):
         url = "/v1/create_course"
         ret = self.post(url, json={"course_id": 14, "course_name": "未命名"})
         self._show_data("create_course", url, ret)
+
+    def create_activity(self):
+        url = "/v1/create_activity"
+        ret = self.post(url, json={"activity_name": "未命名"})
+        self._show_data("create_activity", url, ret)
 
     def create_project(self):
         data = {
@@ -136,11 +146,35 @@ class ABTestingTest(BaseRequest):
         ret = self.post(url, json={"project_id": "5d414f5b191e75ee50919d7b"})
         self._show_data("get_project_data", url, ret)
 
+    def upload_event_data_single(self):
+        data = {
+            "event_id": "5d5a1a0dc938cda633d5a20f",
+            "uid": 0,
+            "create_time": int(time.time()),
+            "item_id": "https://www.baidu.com",
+            "item_type": 6,
+            "duration": None
+        }
+        data2 = {
+            "event_id": "5d5a1a0dc938cda633d5a210",
+            "uid": 0,
+            "create_time": int(time.time()),
+            "item_id": "小星星",
+            "item_type": 4,
+            "duration": None
+        }
+        url = "/v1/abtesting/upload_event_data/"
+        ret = self.post(url, json=data2)
+        self._show_data("upload_event_data_single", url, ret)
+
 
 if __name__ == '__main__':
     # ABTestingTest().run()
     # ABTestingTest().get_all_indicator()
     # ABTestingTest().get_course()
     # ABTestingTest().create_course()
-    ABTestingTest().create_project()
+    # ABTestingTest().create_project()
     # ABTestingTest().get_project_data()
+    # ABTestingTest().upload_event_data_single()
+    ABTestingTest().get_activity()
+    # ABTestingTest().create_activity()
