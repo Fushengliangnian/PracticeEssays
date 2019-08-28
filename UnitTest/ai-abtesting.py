@@ -13,8 +13,9 @@ from UnitTest.base import BaseRequest
 class AIABTesting(BaseRequest):
     def __init__(self):
         # TODO: 记得修改
-        # super().__init__(host="http://api.iguitar.immusician.com", port=2525)
-        super().__init__(port=22222)
+        # super().__init__(host="http://58.87.125.111", port=2525)
+        super().__init__(host="http://api.iguitar.immusician.com", port=2525)
+        # super().__init__(port=22222)
 
     def upload_event_data(self):
         data = {
@@ -57,7 +58,7 @@ class AIABTesting(BaseRequest):
 
     def create_event(self):
         data = {
-            "event_name": "点击 vip特权 按钮",
+            "event_name": "点击 vip特权  按钮",
             "event_type": 1,
             "event_need_params": {
                 "item_id": {
@@ -94,14 +95,138 @@ class AIABTesting(BaseRequest):
                 },
             }
         }
+        data2 = {
+            "event_name": "尤克里里点击 vip特权  按钮",
+            "event_type": 1,
+            "event_need_params": {
+                "item_id": {
+                    "required": False,
+                    "value_type": "str",
+                    "description": "该类型的id",
+                    "default": ""
+                },
+                "item_type": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "类型(按钮)",
+                    "default": 4
+                },
+                "event_id": {
+                    "required": True,
+                    "value_type": "str",
+                    "description": "当前事件id"
+                },
+                "create_time": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "创建时间"
+                },
+                "uid": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "用户id"
+                },
+                "duration": {
+                    "required": False,
+                    "value_type": "int",
+                    "description": "时长"
+                },
+            }
+        }
+        lesson_data = {
+            "event_name": "点击lesson事件",
+            "event_type": 1,
+            "event_need_params": {
+                "item_id": {
+                    "required": False,
+                    "value_type": "str",
+                    "description": "该类型的id",
+                    "default": ""
+                },
+                "item_type": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "类型(lesson)",
+                    "default": 7
+                },
+                "event_id": {
+                    "required": True,
+                    "value_type": "str",
+                    "description": "当前事件id"
+                },
+                "create_time": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "创建时间"
+                },
+                "uid": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "用户id"
+                },
+                "duration": {
+                    "required": False,
+                    "value_type": "int",
+                    "description": "时长"
+                },
+                "other": {
+                    "required": False,
+                    "value_type": "dict",
+                    "description": "其他参数"
+                }
+            }
+        }
+        song_data = {
+            "event_name": "点击 曲谱事件",
+            "event_type": 1,
+            "event_need_params": {
+                "item_id": {
+                    "required": False,
+                    "value_type": "str",
+                    "description": "曲谱id",
+                    "default": ""
+                },
+                "item_type": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "类型(曲谱)",
+                    "default": 8
+                },
+                "event_id": {
+                    "required": True,
+                    "value_type": "str",
+                    "description": "当前事件id"
+                },
+                "create_time": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "创建时间"
+                },
+                "uid": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "用户id"
+                },
+                "duration": {
+                    "required": False,
+                    "value_type": "int",
+                    "description": "时长"
+                },
+                "other": {
+                    "required": False,
+                    "value_type": "dict",
+                    "description": "其他参数"
+                }
+            }
+        }
         url = "/v3/abtesting/create_event/"
-        ret = self.post(url, json=data)
+        ret = self.post(url, json=data2)
         self._show_data("create_event", url, ret)
 
     def upload_event_data_single(self):
         data = {
             "event_id": "5d5a1a0dc938cda633d5a20f",
-            # "uid": 0,
+            "uid": 0,
             "create_time": int(time.time()),
             "item_id": "https://www.baidu.com",
             "item_type": 6,
@@ -151,22 +276,23 @@ class AIABTesting(BaseRequest):
     def create_indicator(self):
         url = "/v3/create_indicator"
         data = {
-            "name": "事件 -- 统计点击总数",
+            "name": "事件(需绑定项目id) -- 统计点击总数",
             "db_name": "jita",
             "collection_name": "v3_event_info",
             "select_args": {
                 "item_id": {
-                    "description": "banner id",
+                    "description": "该事件下所绑定的id",
+                    "required": True,
+                    "value_type": "str",
+                    # "is_show_list": True,
+                    # "item_type": 5
+                },
+                "event_id": {
+                    "description": "事件id",
                     "required": True,
                     "value_type": "str",
                     "is_show_list": True,
-                    "item_type": 5
-                },
-                "event_id": {
-                    "description": "event id",
-                    "required": True,
-                    "value_type": "str",
-                    "is_show_list": True
+                    "item_type": 7
                 }
             },
             "is_ratio": False,
@@ -177,13 +303,40 @@ class AIABTesting(BaseRequest):
             },
             "show_data": {}
         }
-        ret = self.post(url, json=data)
+
+        data2 = {
+            "name": "事件(无需绑定项目id) -- 统计点击总数",
+            "db_name": "jita",
+            "collection_name": "v3_event_info",
+            "select_args": {
+                "event_id": {
+                    "description": "事件id",
+                    "required": True,
+                    "value_type": "str",
+                    "is_show_list": True,
+                    "item_type": 7
+                }
+            },
+            "is_ratio": False,
+            "need_way": {
+                "compute_total": [
+                    "create_time"
+                ]
+            },
+            "show_data": {}
+        }
+        ret = self.post(url, json=data2)
         self._show_data("create_indicator", url, ret)
+
+    def get_activity(self):
+        url = "/v3/get_activity"
+        ret = self.get(url)
+        self._show_data("get_activity", url, ret)
 
 
 if __name__ == '__main__':
     # AIABTesting().run()
-    # AIABTesting().create_event()
+    AIABTesting().create_event()
     # AIABTesting().get_all_event()
     # AIABTesting().upload_event_data()
     # AIABTesting().upload_event_data_single()
@@ -192,4 +345,5 @@ if __name__ == '__main__':
     # AIABTesting().create_course()
     # AIABTesting().get_all_indicator()
     # AIABTesting().get_item_list()
-    AIABTesting().create_indicator()
+    # AIABTesting().create_indicator()
+    # AIABTesting().get_activity()

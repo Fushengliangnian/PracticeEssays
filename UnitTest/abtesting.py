@@ -119,7 +119,7 @@ class ABTestingTest(BaseRequest):
             "has_ratio": 0
         }
         data3 = {
-            u'course_id': 44,
+            # u'course_id': 44,
             u'ratio_indicator_list': [],
             u'has_ratio': False,
             u'name': 'test',
@@ -128,7 +128,7 @@ class ABTestingTest(BaseRequest):
                     u'course_id': u'44',
                     u'indicator_id': u'5d41473b191e75ebb226bd22',
                     u'completed': u'1',
-                 u'user_group': u''
+                    u'user_group': u''
                 }
             ]
         }
@@ -173,8 +173,8 @@ if __name__ == '__main__':
     # ABTestingTest().get_all_indicator()
     # ABTestingTest().get_course()
     # ABTestingTest().create_course()
-    # ABTestingTest().create_project()
+    ABTestingTest().create_project()
     # ABTestingTest().get_project_data()
     # ABTestingTest().upload_event_data_single()
-    ABTestingTest().get_activity()
+    # ABTestingTest().get_activity()
     # ABTestingTest().create_activity()

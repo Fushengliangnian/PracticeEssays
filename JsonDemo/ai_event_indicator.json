@@ -1,8 +1,8 @@
 [
   {
     "name" : "事件 -- 统计点击总数",
-    "db_name" : "jita",
-    "collection_name" : "v3_event_info",
+    "db_name" : "live_music",
+    "collection_name" : "v1_event_info",
     "select_args" : {
         "item_id" : {
             "description" : "banner id",

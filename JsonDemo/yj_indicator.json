@@ -1,0 +1,49 @@
+[
+  {
+    "name": "事件(需绑定项目id) -- 统计点击总数",
+    "collection_name": "v3_event_info",
+    "select_args": {
+      "item_id": {
+        "required": true,
+        "value_type": "str",
+        "description": "该事件下所绑定的id"
+      },
+      "event_id": {
+        "is_show_list": true,
+        "required": true,
+        "value_type": "str",
+        "description": "事件id",
+        "item_type": 7
+      }
+    },
+    "db_name": "jita",
+    "is_ratio": false,
+    "need_way": {
+      "compute_total": [
+        "create_time"
+      ]
+    },
+    "show_data": {}
+  },
+  {
+    "name": "事件(无需绑定项目id) -- 统计点击总数",
+    "collection_name": "v3_event_info",
+    "select_args": {
+      "event_id": {
+        "is_show_list": true,
+        "required": true,
+        "value_type": "str",
+        "description": "事件id",
+        "item_type": 7
+      }
+    },
+    "db_name": "jita",
+    "is_ratio": false,
+    "need_way": {
+      "compute_total": [
+        "create_time"
+      ]
+    },
+    "show_data": {}
+  }
+]

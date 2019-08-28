@@ -1,0 +1,27 @@
+[
+  {
+    "name" : "统计单个用户所有课程点击信息",
+    "db_name" : "jita",
+    "collection_name" : "v3_event_info",
+    "select_args" : {
+        "uid" : {
+            "description" : "用户id",
+            "required" : true,
+            "value_type" : "int"
+        },
+        "event_id" : {
+            "description" : "event id",
+            "required" : false,
+            "value_type" : "str",
+            "default" : ""
+        }
+    },
+    "is_ratio" : false,
+    "need_way" : {
+        "compute_total" : [
+            "create_time"
+        ]
+    },
+    "show_data" : {}
+  }
+]
