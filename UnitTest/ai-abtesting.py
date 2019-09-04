@@ -141,13 +141,55 @@ class AIABTesting(BaseRequest):
                     "required": False,
                     "value_type": "str",
                     "description": "该类型的id",
-                    "default": ""
                 },
                 "item_type": {
                     "required": True,
                     "value_type": "int",
                     "description": "类型(lesson)",
-                    "default": 7
+                    "default": 2
+                },
+                "event_id": {
+                    "required": True,
+                    "value_type": "str",
+                    "description": "当前事件id"
+                },
+                "create_time": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "创建时间"
+                },
+                "uid": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "用户id"
+                },
+                "duration": {
+                    "required": False,
+                    "value_type": "int",
+                    "description": "时长"
+                },
+                "other": {
+                    "required": False,
+                    "value_type": "dict",
+                    "description": "其他参数"
+                }
+            }
+        }
+        course_data = {
+            "event_name": "点击course事件",
+            "event_type": 1,
+            "event_need_params": {
+                "item_id": {
+                    "required": True,
+                    "value_type": "str",
+                    "description": "该类型的id",
+                    "default": ""
+                },
+                "item_type": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "类型(course)",
+                    "default": 1
                 },
                 "event_id": {
                     "required": True,
@@ -220,7 +262,7 @@ class AIABTesting(BaseRequest):
             }
         }
         url = "/v3/abtesting/create_event/"
-        ret = self.post(url, json=data2)
+        ret = self.post(url, json=lesson_data)
         self._show_data("create_event", url, ret)
 
     def upload_event_data_single(self):
@@ -234,14 +276,22 @@ class AIABTesting(BaseRequest):
         }
         data2 = {
             "event_id": "5d5a1a0dc938cda633d5a210",
-            # "uid": 0,
+            "uid": 0,
             "create_time": int(time.time()),
             "item_id": "小星星",
             "item_type": 4,
             # "duration": None
         }
+        data_song = {
+            "event_id": "5d661772191e75fe93125f55",
+            "item_id": "247",
+            "create_time": "1566973150",
+            "item_type": "1",
+            "other": ujson.dumps({"instrument_type": "ukulele"}),
+            "uid": "1"
+        }
         url = "/v3/abtesting/upload_event_data/"
-        ret = self.get(url, json=data)
+        ret = self.get(url, json=data2)
         self._show_data("upload_event_data_single", url, ret)
 
     def get_project_data(self):
@@ -325,7 +375,61 @@ class AIABTesting(BaseRequest):
             },
             "show_data": {}
         }
-        ret = self.post(url, json=data2)
+
+        course_ind = {
+            "name": "统计单个用户所有课程点击信息",
+            "db_name": "jita",
+            "collection_name": "v3_event_info",
+            "select_args": {
+                "uid": {
+                    "description": "用户id",
+                    "required": True,
+                    "value_type": "int"
+                },
+                "event_id": {
+                    "description": "event id",
+                    "required": False,
+                    "value_type": "str",
+                    "default": "5d662496ea56aa000c5ffd95"
+                }
+            },
+            "is_ratio": False,
+            "need_way": {
+                "aggr_course_by_event_id_and_uid": [
+                    "create_time"
+                ]
+            },
+            "show_data": {
+                "info_list": "course_by_aggregation"
+            }
+        }   # 120: 5d6dd680ea56aa037fe818ef
+        score_ind = {
+            "name": "统计单个用户所有曲谱点击信息",
+            "collection_name": "v3_event_info",
+            "select_args": {
+                "event_id": {
+                    "default": "5d6624b7ea56aa000b050848",
+                    "required": False,
+                    "value_type": "str",
+                    "description": "event id"
+                },
+                "uid": {
+                    "required": True,
+                    "value_type": "int",
+                    "description": "用户id"
+                }
+            },
+            "db_name": "jita",
+            "is_ratio": False,
+            "need_way": {
+                "aggr_score_by_event_id_and_uid": [
+                    "create_time"
+                ]
+            },
+            "show_data": {
+                "info_list": "score_by_aggregation"
+            }}   # 120: 5d6dd659ea56aa000d9ffed3
+        ret = self.post(url, json=course_ind)
         self._show_data("create_indicator", url, ret)
 
     def get_activity(self):
@@ -333,10 +437,22 @@ class AIABTesting(BaseRequest):
         ret = self.get(url)
         self._show_data("get_activity", url, ret)
 
+    def get_single_user_statics_info(self):
+        url = "/v3/get_single_user_statics_info"
+        course_id = "5d663dfc92b157c5b289d69e"
+        course_id_111 = "5d663bcf8538bacf6454666c"
+        song_id = "5d6c80e592b157c5b289d69f"
+        song_id_111 = "5d6c89444a1dd4000ac9146b"
+        # params = {"uid": 400368173, "indicator_id": course_id_111}
+        params = {"uid": 400368173, "indicator_id": song_id_111}
+        # params = {"uid": 405751145, "indicator_id": song_id_111}
+        ret = self.get(url, param=params)
+        self._show_data("get_single_user_statics_info", url, ret)
+
 
 if __name__ == '__main__':
     # AIABTesting().run()
-    AIABTesting().create_event()
+    # AIABTesting().create_event()
     # AIABTesting().get_all_event()
     # AIABTesting().upload_event_data()
     # AIABTesting().upload_event_data_single()
@@ -345,5 +461,6 @@ if __name__ == '__main__':
     # AIABTesting().create_course()
     # AIABTesting().get_all_indicator()
     # AIABTesting().get_item_list()
-    # AIABTesting().create_indicator()
+    AIABTesting().create_indicator()
     # AIABTesting().get_activity()
+    # AIABTesting().get_single_user_statics_info()

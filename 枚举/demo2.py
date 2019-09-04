@@ -8,4 +8,10 @@
 lis1 = [2, 3, 4]
 lis2 = [4, 2, 3]
 ret = lis1 == lis2
-print(ret)
+# print(ret)
+
+
+dic = {}
+
+s = str(dic)
+print(s, type(s))
